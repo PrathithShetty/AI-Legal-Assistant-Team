@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "rti-application",
+    "name": "RTI Application",
+    "category": "rti",
+    "description": "Use this to ask a government office for information under Section 6(1) of the Right to Information Act, 2005, such as the status of your application, pension or any official record.",
+    "fields": [
+      {"name": "pio_office", "label": "Office / department name and address", "type": "textarea"},
+      {"name": "applicant_name", "label": "Your full name", "type": "text"},
+      {"name": "applicant_address", "label": "Your address", "type": "textarea"},
+      {"name": "information", "label": "Information you need (one point per line)", "type": "textarea"},
+      {"name": "fee_details", "label": "Fee payment details (e.g. IPO number / online receipt)", "type": "text"},
+      {"name": "date", "label": "Date", "type": "date"},
+      {"name": "place", "label": "Place", "type": "text"}
+    ],
+    "content": "To,\nThe Public Information Officer,\n{{pio_office}}\n\nSubject: Application for information under Section 6(1) of the Right to Information Act, 2005\n\nSir/Madam,\n\nI, {{applicant_name}}, residing at {{applicant_address}}, request the following information under the Right to Information Act, 2005:\n\n{{information}}\n\nI am a citizen of India. The application fee has been paid as follows: {{fee_details}}.\n\nIf the information requested is held by another public authority, kindly transfer this application under Section 6(3) of the Act and inform me.\n\nYours faithfully,\n\n{{applicant_name}}\nDate: {{date}}\nPlace: {{place}}"
+  },
+  {
+    "slug": "consumer-complaint-letter",
+    "name": "Consumer Complaint Letter to Seller",
+    "category": "consumer",
+    "description": "A first written complaint to a seller or service provider about a defective product or poor service, asking for a refund, replacement or repair. Sending this is usually the first step before approaching the Consumer Helpline or Commission.",
+    "fields": [
+      {"name": "seller_name", "label": "Seller / company name and address", "type": "textarea"},
+      {"name": "customer_name", "label": "Your full name", "type": "text"},
+      {"name": "customer_contact", "label": "Your address, phone and email", "type": "textarea"},
+      {"name": "product", "label": "Product or service purchased", "type": "text"},
+      {"name": "order_details", "label": "Order / invoice number and date of purchase", "type": "text"},
+      {"name": "amount", "label": "Amount paid (Rs.)", "type": "text"},
+      {"name": "problem", "label": "Describe the problem", "type": "textarea"},
+      {"name": "remedy", "label": "What you want (refund / replacement / repair)", "type": "text"},
+      {"name": "date", "label": "Date", "type": "date"}
+    ],
+    "content": "To,\n{{seller_name}}\n\nSubject: Complaint regarding {{product}} (Order/Invoice: {{order_details}})\n\nDear Sir/Madam,\n\nI purchased {{product}} from you (Order/Invoice: {{order_details}}) for Rs. {{amount}}.\n\nThe problem is as follows:\n{{problem}}\n\nThis amounts to a defect/deficiency in service under the Consumer Protection Act, 2019. I request you to provide a {{remedy}} within 15 days of receiving this letter.\n\nIf the matter is not resolved within this time, I will be constrained to approach the National Consumer Helpline and the Consumer Disputes Redressal Commission, at your cost and risk.\n\nCopies of the invoice and supporting documents are enclosed.\n\nYours faithfully,\n\n{{customer_name}}\n{{customer_contact}}\nDate: {{date}}"
+  },
+  {
+    "slug": "security-deposit-notice",
+    "name": "Notice for Refund of Security Deposit",
+    "category": "property",
+    "description": "A written notice from a tenant to a landlord asking for the security deposit to be returned after vacating the premises.",
+    "fields": [
+      {"name": "landlord_name", "label": "Landlord's name and address", "type": "textarea"},
+      {"name": "tenant_name", "label": "Your full name", "type": "text"},
+      {"name": "tenant_address", "label": "Your current address", "type": "textarea"},
+      {"name": "property_address", "label": "Address of the rented property", "type": "textarea"},
+      {"name": "deposit_amount", "label": "Security deposit amount (Rs.)", "type": "text"},
+      {"name": "vacated_on", "label": "Date you vacated and handed over keys", "type": "date"},
+      {"name": "days", "label": "Days given to refund (e.g. 15)", "type": "text"},
+      {"name": "date", "label": "Date", "type": "date"}
+    ],
+    "content": "To,\n{{landlord_name}}\n\nSubject: Request for refund of security deposit for {{property_address}}\n\nDear Sir/Madam,\n\nI was your tenant at {{property_address}} and paid you a refundable security deposit of Rs. {{deposit_amount}} at the start of the tenancy.\n\nI vacated the premises and handed over the keys on {{vacated_on}}, after clearing all rent and dues. The premises were handed over in good condition, subject to normal wear and tear.\n\nDespite this, the security deposit has not been returned. I request you to refund Rs. {{deposit_amount}} within {{days}} days of receiving this notice, by bank transfer or cheque.\n\nIf the amount is not refunded within this period, I will be compelled to take appropriate legal action for recovery along with interest and costs.\n\nYours faithfully,\n\n{{tenant_name}}\n{{tenant_address}}\nDate: {{date}}"
+  },
+  {
+    "slug": "rental-agreement",
+    "name": "Rental Agreement (11 months)",
+    "category": "property",
+    "description": "A simple residential leave-and-licence style rent agreement for 11 months. Print it on stamp paper of the value required in your state and have it signed by both parties and two witnesses.",
+    "fields": [
+      {"name": "place", "label": "Place of signing", "type": "text"},
+      {"name": "date", "label": "Date of agreement", "type": "date"},
+      {"name": "landlord_name", "label": "Landlord's name", "type": "text"},
+      {"name": "landlord_address", "label": "Landlord's address", "type": "textarea"},
+      {"name": "tenant_name", "label": "Tenant's name", "type": "text"},
+      {"name": "tenant_address", "label": "Tenant's permanent address", "type": "textarea"},
+      {"name": "property_address", "label": "Address of the rented property", "type": "textarea"},
+      {"name": "start_date", "label": "Tenancy start date", "type": "date"},
+      {"name": "rent", "label": "Monthly rent (Rs.)", "type": "text"},
+      {"name": "deposit", "label": "Security deposit (Rs.)", "type": "text"},
+      {"name": "notice_period", "label": "Notice period in months (e.g. 1)", "type": "text"}
+    ],
+    "content": "RENTAL AGREEMENT\n\nThis Rental Agreement is made at {{place}} on {{date}} between:\n\n{{landlord_name}}, residing at {{landlord_address}} (hereinafter called the LANDLORD), and\n\n{{tenant_name}}, residing at {{tenant_address}} (hereinafter called the TENANT).\n\n1. Property: The Landlord lets the residential premises at {{property_address}} to the Tenant.\n2. Term: The tenancy is for 11 months starting from {{start_date}}, and may be renewed by mutual consent.\n3. Rent: The Tenant shall pay a monthly rent of Rs. {{rent}} on or before the 5th day of every month.\n4. Security deposit: The Tenant has paid a refundable, interest-free security deposit of Rs. {{deposit}}, to be refunded when the Tenant vacates, after deducting any unpaid dues or cost of damage beyond normal wear and tear.\n5. Utilities: Electricity, water and similar charges for actual use shall be paid by the Tenant.\n6. Use: The premises shall be used only for residential purposes and shall not be sub-let.\n7. Maintenance: The Tenant shall keep the premises in good condition. Major structural repairs are the Landlord's responsibility.\n8. Termination: Either party may end this agreement by giving {{notice_period}} month(s) written notice.\n9. Handover: On termination, the Tenant shall hand over vacant possession of the premises in good condition.\n\nIN WITNESS WHEREOF, the parties have signed this agreement on the date mentioned above.\n\nLANDLORD: ____________________ ({{landlord_name}})\n\nTENANT: ____________________ ({{tenant_name}})\n\nWITNESSES:\n1. ____________________\n2. ____________________"
+  },
+  {
+    "slug": "police-complaint",
+    "name": "Written Complaint to Police (FIR request)",
+    "category": "criminal",
+    "description": "A written complaint to the Station House Officer describing an offence and requesting registration of an FIR. Keep a stamped acknowledgement copy.",
+    "fields": [
+      {"name": "police_station", "label": "Police station name and address", "type": "textarea"},
+      {"name": "complainant_name", "label": "Your full name", "type": "text"},
+      {"name": "complainant_contact", "label": "Your address and phone number", "type": "textarea"},
+      {"name": "incident_date", "label": "Date and time of incident", "type": "text"},
+      {"name": "incident_place", "label": "Place of incident", "type": "text"},
+      {"name": "accused", "label": "Name/description of accused (if known)", "type": "text"},
+      {"name": "details", "label": "What happened (in detail)", "type": "textarea"},
+      {"name": "date", "label": "Date", "type": "date"}
+    ],
+    "content": "To,\nThe Station House Officer,\n{{police_station}}\n\nSubject: Complaint and request for registration of FIR\n\nSir/Madam,\n\nI, {{complainant_name}}, wish to report the following incident:\n\nDate and time: {{incident_date}}\nPlace: {{incident_place}}\nAccused (if known): {{accused}}\n\nDetails of the incident:\n{{details}}\n\nThe above acts disclose a cognizable offence. I request you to register an FIR, investigate the matter and provide me with a free copy of the FIR.\n\nI declare that the above information is true to the best of my knowledge.\n\nYours faithfully,\n\n{{complainant_name}}\n{{complainant_contact}}\nDate: {{date}}"
+  },
+  {
+    "slug": "bank-fraud-complaint",
+    "name": "Complaint to Bank about Unauthorised Transaction",
+    "category": "cyber",
+    "description": "A letter to your bank reporting an unauthorised UPI, card or net-banking transaction and asking for the amount to be reversed. Send it as soon as possible after the fraud.",
+    "fields": [
+      {"name": "bank_branch", "label": "Bank name and branch address", "type": "textarea"},
+      {"name": "customer_name", "label": "Your full name", "type": "text"},
+      {"name": "account_number", "label": "Account number (last 4 digits only)", "type": "text"},
+      {"name": "transaction_details", "label": "Transaction date, amount and reference ID(s)", "type": "textarea"},
+      {"name": "how_it_happened", "label": "How it happened", "type": "textarea"},
+      {"name": "cyber_complaint", "label": "Cyber crime complaint / 1930 acknowledgement number (if any)", "type": "text"},
+      {"name": "date", "label": "Date", "type": "date"}
+    ],
+    "content": "To,\nThe Branch Manager,\n{{bank_branch}}\n\nSubject: Report of unauthorised transaction in account ending {{account_number}}\n\nSir/Madam,\n\nI, {{customer_name}}, hold an account ending {{account_number}} with your branch. I wish to report the following unauthorised transaction(s), which I did not make or authorise:\n\n{{transaction_details}}\n\nHow it happened:\n{{how_it_happened}}\n\nI have also reported this to the cyber crime authorities (reference: {{cyber_complaint}}).\n\nI request you to immediately block further debits, investigate the transaction and reverse the amount to my account in line with the RBI guidelines on limiting customer liability in unauthorised electronic banking transactions. Kindly acknowledge this complaint in writing.\n\nYours faithfully,\n\n{{customer_name}}\nDate: {{date}}"
+  },
+  {
+    "slug": "general-affidavit",
+    "name": "General Affidavit",
+    "category": "general",
+    "description": "A simple sworn statement of facts, often needed for name corrections, address proof or lost documents. It must be printed on stamp paper and signed before a Notary or Oath Commissioner.",
+    "fields": [
+      {"name": "deponent_name", "label": "Your full name", "type": "text"},
+      {"name": "relation", "label": "Son/Daughter/Wife of (name)", "type": "text"},
+      {"name": "age", "label": "Age", "type": "text"},
+      {"name": "address", "label": "Your address", "type": "textarea"},
+      {"name": "statements", "label": "Facts you are declaring (one per line)", "type": "textarea"},
+      {"name": "place", "label": "Place", "type": "text"},
+      {"name": "date", "label": "Date", "type": "date"}
+    ],
+    "content": "AFFIDAVIT\n\nI, {{deponent_name}}, son/daughter/wife of {{relation}}, aged {{age}} years, residing at {{address}}, do hereby solemnly affirm and declare as under:\n\n{{statements}}\n\nVERIFICATION\n\nVerified at {{place}} on {{date}} that the contents of the above affidavit are true and correct to the best of my knowledge and belief, and nothing material has been concealed.\n\nDEPONENT\n\n____________________\n({{deponent_name}})"
+  }
+]

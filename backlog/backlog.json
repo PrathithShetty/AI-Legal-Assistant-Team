@@ -1,0 +1,826 @@
+{
+  "repo": "PrathithShetty/AI-Legal-Assistant-Team",
+  "project_title": "AI Legal Assistant - Sprint Board",
+  "team": {
+    "Prathith Shetty": {
+      "srn": "PES2UG24AM121",
+      "github": "PrathithShetty",
+      "role": "Member 1 - User & Case Management",
+      "branch": "feature/user-case-management"
+    },
+    "Niharika Mirle": {
+      "srn": "PES2UG24AM105",
+      "github": "Niharika1704",
+      "role": "Member 2 - Legal Query & AI Assistant",
+      "branch": "feature/ai-legal-assistant"
+    },
+    "Nidhi": {
+      "srn": "PES2UG24AM102",
+      "github": "nidhibillava3103",
+      "role": "Member 3 - Case Guidance & Recommendation",
+      "branch": "feature/case-guidance"
+    },
+    "Prarthana D Acharya": {
+      "srn": "PES2UG24AM119",
+      "github": "prarthanaa11",
+      "role": "Member 4 - Admin, Database & Analytics",
+      "branch": "feature/admin-dashboard"
+    }
+  },
+  "sprints": {
+    "Sprint 0": {
+      "title": "Sprint 0 - Dry Run (12-16 Oct)",
+      "due": "2026-10-16"
+    },
+    "Sprint 1": {
+      "title": "Sprint 1 (19-23 Oct)",
+      "due": "2026-10-23"
+    },
+    "Sprint 2": {
+      "title": "Sprint 2 (26-30 Oct)",
+      "due": "2026-10-30"
+    }
+  },
+  "items": [
+    {
+      "id": "T-01",
+      "type": "Task",
+      "area": "Setup",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 0",
+      "assignee": "Prathith Shetty",
+      "title": "Set up project skeleton (frontend, backend, database)",
+      "story": "As a developer, I want a modular project skeleton so that each team member can build their module independently.",
+      "criteria": [
+        "Frontend, backend and database folders created as per SAD",
+        "App runs locally with a single documented command",
+        "README lists setup steps"
+      ]
+    },
+    {
+      "id": "T-02",
+      "type": "Task",
+      "area": "Setup",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 0",
+      "assignee": "Prathith Shetty",
+      "title": "Enable GitHub Actions CI and protect main branch",
+      "story": "As the team, we want every push and PR checked automatically, and main protected, so unreviewed code never reaches main.",
+      "criteria": [
+        "CI workflow runs on every push and pull request",
+        "Branch rule on main: PR required, 1 approval, status check 'build' must pass, force push blocked",
+        "Every member raises one practice PR during dry run"
+      ]
+    },
+    {
+      "id": "FR-01",
+      "type": "Functional",
+      "area": "Authentication",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "User account creation",
+      "story": "As a general user, I want to create an account so that I can access registered-user features.",
+      "criteria": [
+        "Registration page accepts name, email and password",
+        "Account stored with role 'User'",
+        "Duplicate email is rejected with a clear message"
+      ]
+    },
+    {
+      "id": "FR-02",
+      "type": "Functional",
+      "area": "Authentication",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Validate registration information",
+      "story": "As a user, I want the form to tell me what is missing or invalid so that I can register successfully.",
+      "criteria": [
+        "Required fields checked on client and server",
+        "Email format and minimum password length validated",
+        "Field-level error messages shown"
+      ]
+    },
+    {
+      "id": "FR-03",
+      "type": "Functional",
+      "area": "Authentication",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Login and logout",
+      "story": "As a registered user, I want to log in and log out so that my account is secure.",
+      "criteria": [
+        "Valid credentials start a session/token",
+        "Invalid credentials show an error without revealing which field was wrong",
+        "Logout ends the session"
+      ]
+    },
+    {
+      "id": "FR-04",
+      "type": "Functional",
+      "area": "Authentication",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Restrict administrative functions to administrators",
+      "story": "As an administrator, I want admin features restricted to my role so that legal content cannot be changed by others.",
+      "criteria": [
+        "Role-based check on all admin routes/APIs",
+        "Non-admin access returns 403 and hides admin UI",
+        "BR-04 satisfied"
+      ]
+    },
+    {
+      "id": "FR-05",
+      "type": "Functional",
+      "area": "AI Legal Query",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Submit legal question in natural language",
+      "story": "As a user, I want to type my legal question in plain language so that I don't need legal knowledge to ask.",
+      "criteria": [
+        "Chat/query interface with text box and submit button",
+        "Query sent to backend API",
+        "Loading state shown while waiting"
+      ]
+    },
+    {
+      "id": "FR-06",
+      "type": "Functional",
+      "area": "AI Legal Query",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Validate query input",
+      "story": "As a user, I want empty or meaningless queries to be caught so that I get useful feedback instead of an error.",
+      "criteria": [
+        "Empty, whitespace-only and over-length queries rejected",
+        "Validation on both client and server",
+        "Friendly message explains what to enter"
+      ]
+    },
+    {
+      "id": "FR-07",
+      "type": "Functional",
+      "area": "AI Legal Query",
+      "priority": "High",
+      "points": 8,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Generate informational AI response",
+      "story": "As a user, I want an AI-generated informational answer to my question so that I understand my legal situation.",
+      "criteria": [
+        "Backend integrates the chosen LLM/NLP service",
+        "Prompt restricts answers to Indian legal context (BR-01)",
+        "Errors/timeouts from the AI service handled gracefully"
+      ]
+    },
+    {
+      "id": "FR-08",
+      "type": "Functional",
+      "area": "AI Legal Query",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Present responses in a clear, structured format",
+      "story": "As a user, I want the answer split into clear sections so that it is easy to read.",
+      "criteria": [
+        "Response shows sections: Summary, Category, Steps, When to consult a lawyer, References, Disclaimer",
+        "Readable on mobile and desktop",
+        "Long answers do not break layout"
+      ]
+    },
+    {
+      "id": "FR-09",
+      "type": "Functional",
+      "area": "AI Legal Query",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Display legal disclaimer with responses",
+      "story": "As a user, I want to see a disclaimer with every legal answer so that I know it is not professional advice.",
+      "criteria": [
+        "Disclaimer shown on every legal response",
+        "Wording approved by team and matches BR-02/BR-03",
+        "Disclaimer cannot be hidden by the user"
+      ]
+    },
+    {
+      "id": "FR-10",
+      "type": "Functional",
+      "area": "Issue Guidance",
+      "priority": "High",
+      "points": 5,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Classify legal queries into categories",
+      "story": "As a user, I want my question categorised (e.g. Consumer, Property, Family, Criminal, Labour, Cyber) so that I get relevant guidance.",
+      "criteria": [
+        "At least 6 categories supported",
+        "Classifier returns category plus 'Other/Unsupported'",
+        "Unit tests with sample queries per category"
+      ]
+    },
+    {
+      "id": "FR-11",
+      "type": "Functional",
+      "area": "Issue Guidance",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Display identified legal category",
+      "story": "As a user, I want to see which legal area my issue falls under so that I understand the context.",
+      "criteria": [
+        "Category badge displayed in the response",
+        "Hidden when category is 'Other/Unsupported'"
+      ]
+    },
+    {
+      "id": "FR-12",
+      "type": "Functional",
+      "area": "Issue Guidance",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Provide procedure steps for identified issue",
+      "story": "As a user, I want general step-by-step procedures for my issue so that I know what to do next.",
+      "criteria": [
+        "Curated procedure steps stored per category",
+        "Steps shown as a numbered list",
+        "Steps sourced from approved legal information"
+      ]
+    },
+    {
+      "id": "FR-13",
+      "type": "Functional",
+      "area": "Issue Guidance",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Indicate when professional legal help is required",
+      "story": "As a user, I want to be told when my situation needs a lawyer or official confirmation so that I don't rely only on the app.",
+      "criteria": [
+        "Rules/keywords flag serious matters (e.g. criminal charges, court notices)",
+        "Visible 'Consult a lawyer' notice shown when flagged"
+      ]
+    },
+    {
+      "id": "FR-14",
+      "type": "Functional",
+      "area": "Legal References",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Retrieve relevant legal references",
+      "story": "As a user, I want relevant Acts, sections and case laws for my query so that I can read the actual source.",
+      "criteria": [
+        "Reference dataset stored (Reference_ID, Title, Category, Source, Description)",
+        "References matched by category/keywords",
+        "API returns top matches"
+      ]
+    },
+    {
+      "id": "FR-15",
+      "type": "Functional",
+      "area": "Legal References",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Display legal reference details",
+      "story": "As a user, I want to see title, source and short description of each reference so that I can judge its relevance.",
+      "criteria": [
+        "References section in response and a standalone references page",
+        "Source link shown where available"
+      ]
+    },
+    {
+      "id": "FR-16",
+      "type": "Functional",
+      "area": "Legal References",
+      "priority": "Medium",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Indicate when no reference is available",
+      "story": "As a user, I want to be told when no reference exists so that I am not misled.",
+      "criteria": [
+        "'No suitable reference found' message when no matches",
+        "No fabricated references are shown"
+      ]
+    },
+    {
+      "id": "FR-17",
+      "type": "Functional",
+      "area": "Document Templates",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Nidhi",
+      "title": "Display available document templates",
+      "story": "As a user, I want to browse available legal templates so that I can find the one I need.",
+      "criteria": [
+        "Templates page lists templates grouped by category",
+        "At least 5 templates (e.g. RTI application, consumer complaint, rent agreement, affidavit, legal notice)"
+      ]
+    },
+    {
+      "id": "FR-18",
+      "type": "Functional",
+      "area": "Document Templates",
+      "priority": "Medium",
+      "points": 1,
+      "sprint": "Sprint 2",
+      "assignee": "Nidhi",
+      "title": "Explain purpose of each template",
+      "story": "As a user, I want a short explanation of each template so that I know when to use it.",
+      "criteria": [
+        "Each template shows description/purpose",
+        "Disclaimer shown on template pages"
+      ]
+    },
+    {
+      "id": "FR-19",
+      "type": "Functional",
+      "area": "Document Templates",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 2",
+      "assignee": "Nidhi",
+      "title": "View or generate supported templates",
+      "story": "As a user, I want to fill in my details and generate a template so that I get a ready draft document.",
+      "criteria": [
+        "User can view full template",
+        "Form fills placeholders and generates the document",
+        "Generated document can be copied or downloaded"
+      ]
+    },
+    {
+      "id": "FR-20",
+      "type": "Functional",
+      "area": "Query History",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Prathith Shetty",
+      "title": "Store queries and responses for registered users",
+      "story": "As a registered user, I want my questions and answers saved so that I can come back to them.",
+      "criteria": [
+        "Query stored with Query_ID, User_ID, Query_Text, Category, Response, Timestamp",
+        "Only stored for logged-in users"
+      ]
+    },
+    {
+      "id": "FR-21",
+      "type": "Functional",
+      "area": "Query History",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Prathith Shetty",
+      "title": "View own query history",
+      "story": "As a registered user, I want to view my previous queries so that I can revisit earlier guidance.",
+      "criteria": [
+        "History page lists past queries, newest first",
+        "Clicking an entry shows full response",
+        "Users can only see their own history"
+      ]
+    },
+    {
+      "id": "FR-22",
+      "type": "Functional",
+      "area": "Feedback/Admin",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Submit feedback",
+      "story": "As a user, I want to give feedback on a response so that the system can be improved.",
+      "criteria": [
+        "Feedback form (rating + comment) on responses",
+        "Feedback saved and confirmation shown"
+      ]
+    },
+    {
+      "id": "FR-23",
+      "type": "Functional",
+      "area": "Feedback/Admin",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Admin: manage approved legal information",
+      "story": "As an administrator, I want to add, edit and remove approved legal information so that responses stay accurate.",
+      "criteria": [
+        "Admin dashboard with CRUD for legal information/procedure steps",
+        "Changes reflected in user responses",
+        "Admin-only access (FR-04)"
+      ]
+    },
+    {
+      "id": "FR-24",
+      "type": "Functional",
+      "area": "Feedback/Admin",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 2",
+      "assignee": "Prarthana D Acharya",
+      "title": "Admin: manage legal references and templates",
+      "story": "As an administrator, I want to manage references and templates so that users see up-to-date content.",
+      "criteria": [
+        "CRUD for references and templates in admin dashboard",
+        "Input validated before saving"
+      ]
+    },
+    {
+      "id": "FR-25",
+      "type": "Functional",
+      "area": "Feedback/Admin",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Prarthana D Acharya",
+      "title": "Admin: review submitted feedback",
+      "story": "As an administrator, I want to review user feedback so that I can find and fix problems.",
+      "criteria": [
+        "Admin dashboard lists feedback with rating, comment, date",
+        "Feedback can be marked as reviewed"
+      ]
+    },
+    {
+      "id": "NFR-01",
+      "type": "Non-Functional",
+      "area": "Performance",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Responses within reasonable time",
+      "story": "As a user, I want answers quickly so that the app feels responsive.",
+      "criteria": [
+        "Target: AI response under 10 s for typical queries (measured and recorded)",
+        "Non-AI pages load under 2 s"
+      ]
+    },
+    {
+      "id": "NFR-02",
+      "type": "Non-Functional",
+      "area": "Performance",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Process queries without unnecessary delays",
+      "story": "As a user, I want no avoidable waiting so that my experience is smooth.",
+      "criteria": [
+        "Non-blocking/async calls to AI service",
+        "Static legal data cached",
+        "Timeout configured for AI calls"
+      ]
+    },
+    {
+      "id": "NFR-03",
+      "type": "Non-Functional",
+      "area": "Performance",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Support multiple concurrent users",
+      "story": "As the team, we want the prototype to handle several users at once so that the demo is reliable.",
+      "criteria": [
+        "Simple load test with at least 10 concurrent users",
+        "No errors or data mix-up between users"
+      ]
+    },
+    {
+      "id": "NFR-04",
+      "type": "Non-Functional",
+      "area": "Safety",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Communicate output is informational, not legal advice",
+      "story": "As a user, I want it made clear the output is informational so that I am not misled.",
+      "criteria": [
+        "Disclaimer on home page, response and template pages",
+        "Shown on first use/registration"
+      ]
+    },
+    {
+      "id": "NFR-05",
+      "type": "Non-Functional",
+      "area": "Safety",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Avoid presenting uncertain information as guaranteed",
+      "story": "As a user, I want uncertain answers to be marked uncertain so that I don't treat them as guaranteed.",
+      "criteria": [
+        "System prompt forbids guaranteed outcomes",
+        "Hedging language for uncertain cases",
+        "Tested with sample queries"
+      ]
+    },
+    {
+      "id": "NFR-06",
+      "type": "Non-Functional",
+      "area": "Safety",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Nidhi",
+      "title": "Encourage consulting a qualified lawyer when needed",
+      "story": "As a user, I want to be advised to see a lawyer when needed so that I get proper help.",
+      "criteria": [
+        "Lawyer recommendation shown whenever FR-13 flags a query",
+        "Link/info for free legal aid (e.g. NALSA) shown"
+      ]
+    },
+    {
+      "id": "NFR-07",
+      "type": "Non-Functional",
+      "area": "Security",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Authenticate before account-specific information",
+      "story": "As a registered user, I want my data shown only after login so that others cannot see it.",
+      "criteria": [
+        "Protected routes require valid session/token",
+        "Unauthenticated requests redirected to login / return 401"
+      ]
+    },
+    {
+      "id": "NFR-08",
+      "type": "Non-Functional",
+      "area": "Security",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prarthana D Acharya",
+      "title": "Authorization for administrative functions",
+      "story": "As an administrator, I want admin APIs authorized server-side so that they cannot be bypassed.",
+      "criteria": [
+        "Server-side role check on every admin API",
+        "Tests confirm non-admin gets 403"
+      ]
+    },
+    {
+      "id": "NFR-09",
+      "type": "Non-Functional",
+      "area": "Security",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Prathith Shetty",
+      "title": "Protect user information and stored queries",
+      "story": "As a user, I want my information and queries kept private so that my legal issues stay confidential.",
+      "criteria": [
+        "Queries filtered by User_ID on every read",
+        "Secrets/API keys in environment variables, not code",
+        "Input sanitised against injection"
+      ]
+    },
+    {
+      "id": "NFR-10",
+      "type": "Non-Functional",
+      "area": "Security",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Prarthana D Acharya",
+      "title": "Secure HTTPS communication",
+      "story": "As a user, I want my data sent over HTTPS so that it cannot be intercepted.",
+      "criteria": [
+        "Deployed app served over HTTPS",
+        "HTTP redirects to HTTPS"
+      ]
+    },
+    {
+      "id": "NFR-11",
+      "type": "Non-Functional",
+      "area": "Security",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Passwords not stored in plain text",
+      "story": "As a user, I want my password hashed so that it is safe even if the database leaks.",
+      "criteria": [
+        "Passwords hashed with bcrypt/argon2",
+        "No password in logs or API responses"
+      ]
+    },
+    {
+      "id": "NFR-12",
+      "type": "Non-Functional",
+      "area": "Quality",
+      "priority": "High",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Usability for non-technical users",
+      "story": "As a non-technical user, I want a simple interface so that I can use the app without help.",
+      "criteria": [
+        "Consistent navigation across pages",
+        "Plain-language labels, no legal jargon in UI",
+        "Responsive layout"
+      ]
+    },
+    {
+      "id": "NFR-13",
+      "type": "Non-Functional",
+      "area": "Quality",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 1",
+      "assignee": "Prathith Shetty",
+      "title": "Maintainability through modular components",
+      "story": "As a developer, I want separate modules (auth, query, classification, references, templates, history, admin) so that each can change independently.",
+      "criteria": [
+        "Each feature in its own module/folder",
+        "Modules communicate through defined APIs/interfaces"
+      ]
+    },
+    {
+      "id": "NFR-14",
+      "type": "Non-Functional",
+      "area": "Quality",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Reliability: handle invalid or unsupported inputs gracefully",
+      "story": "As a user, I want helpful messages instead of crashes so that I can continue using the app.",
+      "criteria": [
+        "Global error handler on backend",
+        "User-friendly error pages/messages on frontend",
+        "Unsupported topics get a polite 'out of scope' message"
+      ]
+    },
+    {
+      "id": "NFR-15",
+      "type": "Non-Functional",
+      "area": "Quality",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Testability: independently testable modules",
+      "story": "As a tester, I want unit tests per module so that each can be verified on its own.",
+      "criteria": [
+        "Unit tests for each major module as per Test Plan",
+        "Tests run automatically in CI"
+      ]
+    },
+    {
+      "id": "NFR-16",
+      "type": "Non-Functional",
+      "area": "Quality",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Niharika Mirle",
+      "title": "Portability across modern browsers",
+      "story": "As a user, I want the app to work in my browser so that I can use any device.",
+      "criteria": [
+        "Tested on Chrome, Edge, Firefox and one mobile browser",
+        "Results recorded in test report"
+      ]
+    },
+    {
+      "id": "T-03",
+      "type": "Task",
+      "area": "Delivery",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 1",
+      "assignee": "Niharika Mirle",
+      "title": "Record 1-minute Sprint 1 demo video and upload to repo",
+      "story": "As the team, we need a short video of the working Sprint 1 product as the sprint deliverable.",
+      "criteria": [
+        "1-minute video of working product",
+        "Uploaded to repo (demo/ folder) via PR"
+      ]
+    },
+    {
+      "id": "T-04",
+      "type": "Task",
+      "area": "Delivery",
+      "priority": "High",
+      "points": 1,
+      "sprint": "Sprint 2",
+      "assignee": "Nidhi",
+      "title": "Record 2-minute Sprint 2 demo video and upload to repo",
+      "story": "As the team, we need a video of the final working product as the Sprint 2 deliverable.",
+      "criteria": [
+        "2-minute video of final working product",
+        "Uploaded to repo (demo/ folder) via PR"
+      ]
+    },
+    {
+      "id": "T-05",
+      "type": "Task",
+      "area": "Delivery",
+      "priority": "High",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Prarthana D Acharya",
+      "title": "Complete documentation and deviation log; freeze development",
+      "story": "As the team, we need final documentation, including deviations from SRS/SAD/Test Plan, ready for the final demo.",
+      "criteria": [
+        "README, setup guide and user guide complete",
+        "DEVIATIONS.md lists every change from submitted SRS/SAD/Test Plan with reason",
+        "Release tag created to freeze development"
+      ]
+    },
+    {
+      "id": "EX-01",
+      "type": "Extra",
+      "area": "User & Case Management",
+      "priority": "Medium",
+      "points": 2,
+      "sprint": "Sprint 2",
+      "assignee": "Prathith Shetty",
+      "title": "Case status: mark cases Open or Resolved",
+      "story": "As a registered user, I want to mark each saved question (case) as open or resolved so that I can track which problems are still pending.",
+      "criteria": [
+        "New cases start as Open",
+        "User can mark a case Resolved and reopen it",
+        "My cases page filters by All / Open / Resolved",
+        "Recorded as deviation D-01"
+      ]
+    },
+    {
+      "id": "EX-02",
+      "type": "Extra",
+      "area": "User & Case Management",
+      "priority": "Medium",
+      "points": 3,
+      "sprint": "Sprint 2",
+      "assignee": "Prathith Shetty",
+      "title": "User dashboard and profile",
+      "story": "As a registered user, I want a dashboard and profile page so that I can see my cases at a glance and manage my account.",
+      "criteria": [
+        "Dashboard shows total/open/resolved counts, recent cases and cases by legal area",
+        "Profile lets the user edit their name and change password (current password required)",
+        "Recorded as deviation D-02"
+      ]
+    },
+    {
+      "id": "EX-03",
+      "type": "Extra",
+      "area": "Issue Guidance",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 2",
+      "assignee": "Nidhi",
+      "title": "Case progress tracking and document checklist",
+      "story": "As a user, I want to tick off the suggested steps and see which documents I need so that I can follow my case step by step.",
+      "criteria": [
+        "Each case shows its procedure steps as a checklist that can be ticked",
+        "Progress (e.g. 2 of 5 steps) shown on the case and dashboard",
+        "Category-wise list of documents to keep ready",
+        "Recorded as a deviation"
+      ]
+    },
+    {
+      "id": "EX-04",
+      "type": "Extra",
+      "area": "Feedback/Admin",
+      "priority": "Medium",
+      "points": 5,
+      "sprint": "Sprint 2",
+      "assignee": "Prarthana D Acharya",
+      "title": "Admin analytics, reports and user management",
+      "story": "As an administrator, I want usage analytics, reports and a user list so that I can monitor the system.",
+      "criteria": [
+        "Charts/tables: questions per category, per day, average rating",
+        "Downloadable CSV report",
+        "User list with role change (user/admin)",
+        "Recorded as a deviation"
+      ]
+    }
+  ]
+}

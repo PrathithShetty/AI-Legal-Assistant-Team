@@ -1,0 +1,52 @@
+# Runs on every push and pull request. The job name "build" is the required status check on main.
+# Steps detect the stack, so it works for a Python backend, a Node frontend, or both.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Find project files
+        id: detect
+        run: |
+          py=$(find . -name requirements.txt -not -path "*/node_modules/*" -not -path "*/venv/*" | head -1)
+          js=$(find . -name package.json -not -path "*/node_modules/*" | head -1)
+          echo "py_dir=$( [ -n "$py" ] && dirname "$py" )" >> "$GITHUB_OUTPUT"
+          echo "js_dir=$( [ -n "$js" ] && dirname "$js" )" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.detect.outputs.py_dir != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies and run tests
+        if: steps.detect.outputs.py_dir != ''
+        working-directory: ${{ steps.detect.outputs.py_dir }}
+        run: |
+          pip install -r requirements.txt pytest
+          if ls tests test_*.py */test_*.py >/dev/null 2>&1; then pytest -q; else echo "No Python tests yet"; fi
+
+      - name: Set up Node
+        if: steps.detect.outputs.js_dir != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Node dependencies, build and test
+        if: steps.detect.outputs.js_dir != ''
+        working-directory: ${{ steps.detect.outputs.js_dir }}
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          npm run build --if-present
+          npm test --if-present
+
+      - name: Summary
+        run: echo "All checks passed!"

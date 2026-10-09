@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ code }}{% endblock %}
+{% block content %}
+<div class="card narrow center">
+  <p class="error-code">{{ code }}</p>
+  <h1>{% if code == 404 %}Page not found{% elif code == 403 %}Access denied{% elif code == 400 %}Something was not right{% else %}Something went wrong{% endif %}</h1>
+  <p>{% if code == 403 %}This page is only available to administrators.{% else %}{{ message }}{% endif %}</p>
+  <p><a class="btn btn-primary" href="{{ home_url() }}">Go to the home page</a></p>
+</div>
+{% endblock %}

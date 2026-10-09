@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "consumer",
+    "name": "Consumer Protection",
+    "description": "Problems with products or services you paid for, such as defective goods, refunds, online shopping, warranties or poor service. Indian consumer law gives you the right to a remedy and to approach a Consumer Commission.",
+    "keywords": "consumer, refund, defective, damaged product, warranty, guarantee, replacement, seller, shopkeeper, online order, online shopping, e-commerce, delivery, not delivered, overcharged, mrp, service charge, deficiency in service, bill, invoice, customer care, product, purchase, bought, courier, airline, insurance claim rejected",
+    "steps": [
+      "Collect proof: bill or invoice, warranty card, order details, photos of the problem and all messages or emails with the seller.",
+      "Write to the seller or service provider (email or letter) explaining the problem and the remedy you want (refund, replacement or repair). Keep a copy.",
+      "If it is not resolved, register a grievance with the National Consumer Helpline (call 1915 or visit consumerhelpline.gov.in). They contact the company on your behalf.",
+      "If there is still no solution, send a legal notice giving the seller a clear deadline (commonly 15 days).",
+      "File a complaint before the District Consumer Disputes Redressal Commission (claims up to Rs. 50 lakh), online through the e-Daakhil portal, within 2 years of the problem arising."
+    ],
+    "needs_lawyer": 0
+  },
+  {
+    "slug": "property",
+    "name": "Property & Tenancy",
+    "description": "Disputes about renting, security deposits, eviction, buying or selling property, builders and land records. These are governed by central laws such as the Transfer of Property Act and by state rent laws.",
+    "keywords": "rent, landlord, tenant, tenancy, security deposit, deposit, eviction, evict, vacate, lease, rental agreement, rent agreement, property, land, flat, apartment, house, plot, sale deed, registration, encroachment, builder, possession, rera, mutation, khata, society, maintenance charges, neighbour",
+    "steps": [
+      "Gather documents: rent or lease agreement, sale deed, rent receipts, bank transfers, photos and messages.",
+      "Raise the issue in writing with the other party (landlord, tenant, builder or society) and keep proof that you sent it.",
+      "A landlord generally cannot evict a tenant, lock the premises or cut water and electricity without following the legal process under the state rent law.",
+      "If the dispute continues, send a legal notice (for example, for refund of a security deposit).",
+      "Depending on the dispute, approach the Rent Controller or Rent Authority, the civil court, the state RERA authority (for builder delays) or the Consumer Commission."
+    ],
+    "needs_lawyer": 0
+  },
+  {
+    "slug": "family",
+    "name": "Family & Marriage",
+    "description": "Matters such as divorce, maintenance, child custody, dowry and domestic violence. These are decided mainly by Family Courts and Magistrates under personal laws and the Domestic Violence Act.",
+    "keywords": "divorce, marriage, married, husband, wife, spouse, maintenance, alimony, custody, child custody, dowry, domestic violence, separation, separated, in-laws, mother-in-law, cruelty, adoption, guardian, family court, inheritance, make a will, write a will, registered will, his will, her will, succession, ancestral property",
+    "steps": [
+      "If you are in immediate danger, call 112 (police) or 181 (women helpline).",
+      "Keep records: marriage certificate, photos, messages, medical reports and financial documents.",
+      "Consider counselling or mediation. Family Courts often refer couples to mediation first.",
+      "For domestic violence, you can approach a Protection Officer, the police or a Magistrate under the Protection of Women from Domestic Violence Act, 2005.",
+      "Divorce, maintenance and custody are decided by the Family Court. For mutual-consent divorce under the Hindu Marriage Act, both spouses file a joint petition after living separately for at least one year."
+    ],
+    "needs_lawyer": 1
+  },
+  {
+    "slug": "criminal",
+    "name": "Criminal & Police",
+    "description": "Crimes such as theft, assault, threats or cheating, and dealing with the police, FIRs, arrest and bail. Since 1 July 2024 these are governed by the Bharatiya Nyaya Sanhita and the Bharatiya Nagarik Suraksha Sanhita.",
+    "keywords": "police, fir, complaint to police, arrest, arrested, theft, stolen, robbery, snatching, assault, attacked, beaten, hit me, threat, threatened, harassment, stalking, bail, crime, cheating, murder, kidnap, accused, summons, warrant, chargesheet, police station, jail, custody",
+    "steps": [
+      "In an emergency, call 112.",
+      "Report the offence at the nearest police station. For a cognizable offence the police must register an FIR. A Zero FIR can be filed at any police station, and many states allow e-FIR online.",
+      "Ask for a free copy of the FIR and note the FIR number.",
+      "If the police refuse to register your complaint, send it in writing to the Superintendent of Police. If there is still no action, you can approach the Judicial Magistrate.",
+      "If you are arrested, you have the right to know the grounds of arrest, to inform a relative or friend, to consult a lawyer and to be produced before a Magistrate within 24 hours."
+    ],
+    "needs_lawyer": 1
+  },
+  {
+    "slug": "employment",
+    "name": "Employment & Labour",
+    "description": "Workplace problems such as unpaid salary, wrongful termination, PF and gratuity, and sexual harassment at work. Wages and social security are now covered by the Labour Codes, and harassment by the POSH Act.",
+    "keywords": "salary, wages, unpaid salary, employer, employee, job, fired, termination, terminated, dismissed, resign, resignation, notice period, gratuity, pf, provident fund, epf, office, boss, manager, workplace, sexual harassment at work, posh, overtime, appointment letter, relieving letter, experience letter, bonus, layoff, hr",
+    "steps": [
+      "Collect documents: appointment letter, salary slips, bank statements, emails and attendance records.",
+      "Raise the issue in writing with HR or management and keep copies.",
+      "For sexual harassment at the workplace, complain to the Internal Committee within 3 months of the incident (POSH Act, 2013).",
+      "For unpaid wages, gratuity or PF, approach the Labour Commissioner or Inspector, or use the EPFO grievance portal for PF issues.",
+      "If the issue is still not resolved, send a legal notice and, if needed, approach the Labour Court or Industrial Tribunal."
+    ],
+    "needs_lawyer": 0
+  },
+  {
+    "slug": "cyber",
+    "name": "Cyber Crime & Online Fraud",
+    "description": "Online fraud, UPI or card scams, hacked accounts, fake profiles, online harassment and misuse of personal data. These fall under the Information Technology Act and data protection law.",
+    "keywords": "online fraud, fraud, scam, scammed, upi, otp, hacked, hack, cyber, phishing, fake website, fake profile, social media, instagram, facebook, whatsapp, morphed, sextortion, blackmail online, identity theft, bank fraud, credit card fraud, debit card, money deducted, online harassment, trolling, data leak, password, loan app",
+    "steps": [
+      "If you lost money, immediately call the cyber fraud helpline 1930. Reporting within the first few hours improves the chance of freezing the money.",
+      "Inform your bank to block the card or UPI and dispute the transaction in writing.",
+      "Report the incident on the National Cyber Crime Reporting Portal (cybercrime.gov.in).",
+      "Preserve evidence: screenshots, transaction IDs, website links, phone numbers and emails. Do not delete chats.",
+      "Change your passwords, turn on two-factor authentication and report fake profiles or posts to the platform."
+    ],
+    "needs_lawyer": 0
+  },
+  {
+    "slug": "rti",
+    "name": "Right to Information & Government Services",
+    "description": "Getting information from government offices or following up on delayed government services. The Right to Information Act, 2005 lets any citizen ask a public authority for information.",
+    "keywords": "rti, right to information, government office, government department, public information officer, pio, information from government, application status, pension, ration card, passport delay, municipal, corporation, panchayat, public authority, government scheme",
+    "steps": [
+      "Identify the public authority (department or office) that holds the information.",
+      "Write an application to its Public Information Officer (PIO) stating clearly what information you need. You do not have to give reasons.",
+      "Pay the fee (Rs. 10 for central government offices; state fees vary, and BPL applicants are exempt). Central applications can be filed online at rtionline.gov.in.",
+      "The PIO must reply within 30 days (within 48 hours if the matter concerns someone's life or liberty).",
+      "If you get no reply or are not satisfied, file a first appeal within 30 days, and then a second appeal to the Information Commission within 90 days."
+    ],
+    "needs_lawyer": 0
+  }
+]

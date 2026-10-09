@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}e-Lawyer{% endblock %} · AI Legal Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ home_url() }}">
+        <span class="brand-mark" aria-hidden="true">⚖</span>
+        <span>e-Lawyer <small>AI Legal Assistant</small></span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+      {# Links appear only for feature modules that are installed (see FEATURE_MODULES). #}
+      {% macro nav_link(endpoint, label, section=None) %}
+        {% if has_page(endpoint) %}
+          <a href="{{ url_for(endpoint) }}" {% if request.endpoint and request.endpoint.startswith(section or endpoint) %}aria-current="page"{% endif %}>{{ label }}</a>
+        {% endif %}
+      {% endmacro %}
+      <nav class="site-nav" aria-label="Main">
+        {{ nav_link('query.home', 'Ask') }}
+        {{ nav_link('references.index', 'Legal references') }}
+        {{ nav_link('doc_templates.index', 'Templates', 'doc_templates.') }}
+        {% if g.user %}
+          {{ nav_link('account.dashboard', 'Dashboard') }}
+          {{ nav_link('history.index', 'My cases', 'history.') }}
+        {% endif %}
+        {{ nav_link('feedback.form', 'Feedback') }}
+        {% if g.user and g.user.role == 'admin' %}
+          {{ nav_link('admin.dashboard', 'Admin', 'admin.') }}
+        {% endif %}
+        <span class="nav-spacer"></span>
+        {% if g.user %}
+          {% if has_page('account.profile') %}
+            <a class="nav-user" href="{{ url_for('account.profile') }}" title="My profile">Hi, {{ g.user.name.split(' ')[0] }}</a>
+          {% else %}
+            <span class="nav-user">Hi, {{ g.user.name.split(' ')[0] }}</span>
+          {% endif %}
+          <form method="post" action="{{ url_for('auth.logout') }}" class="inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn btn-ghost btn-small">Log out</button>
+          </form>
+        {% elif has_page('auth.login') %}
+          <a href="{{ url_for('auth.login') }}">Log in</a>
+          <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-small">Sign up</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <div class="notice-bar" role="note">
+    <div class="container">{{ SHORT_DISCLAIMER }}</div>
+  </div>
+
+  <main id="main" class="container main">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}" role="status">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Disclaimer:</strong> {{ DISCLAIMER }}</p>
+      <p>Emergency: 112 · Women helpline: 181 · Cyber fraud: 1930 · Free legal aid (NALSA): 15100</p>
+      <p class="muted">AI-Based Legal Assistant, e-Lawyer and Case Guidance System · UE24CS341A Software Engineering Mini-Project</p>
+    </div>
+  </footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
