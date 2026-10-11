@@ -125,3 +125,5 @@ See [backlog/SPRINT_PLAN.md](backlog/SPRINT_PLAN.md). Work on a branch, open a p
 Practice PR by Nidhi (PES2UG24AM102)
 
 Practice PR by Prathith Shetty (PES2UG24AM121)
+
+Practice PR by Niharika (PES2UG24AM105)
