@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<h1>Admin dashboard</h1>
+<div class="grid stats">
+  <div class="card stat"><span class="stat-value">{{ counts.users }}</span><span class="muted">Registered users</span></div>
+  <div class="card stat"><span class="stat-value">{{ counts.queries }}</span><span class="muted">Saved queries</span></div>
+  <div class="card stat"><span class="stat-value">{{ counts.feedback_new }}</span><span class="muted">New feedback</span></div>
+</div>
+<div class="grid">
+  {% for name, entity in entities.items() %}
+    <a class="card template-card" href="{{ url_for('admin.entity_list', entity_name=name) }}">
+      <h3>{{ entity.title }}</h3><p>{{ counts[name] }} {{ entity.summary }}</p>
+    </a>
+  {% endfor %}
+  {% if has_page('admin.feedback_list') %}
+    <a class="card template-card" href="{{ url_for('admin.feedback_list') }}">
+      <h3>User feedback</h3><p>{{ counts.feedback_new }} waiting for review.</p>
+    </a>
+  {% endif %}
+</div>
+{% endblock %}

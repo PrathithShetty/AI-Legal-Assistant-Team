@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if row else 'Add' }} {{ entity.singular }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ url_for('admin.dashboard') }}">Admin</a> /
+  <a href="{{ url_for('admin.entity_list', entity_name=entity_name) }}">{{ entity.title }}</a> / {{ 'Edit' if row else 'Add' }}</p>
+<h1>{{ 'Edit' if row else 'Add' }} {{ entity.singular }}</h1>
+<form method="post" class="card" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  {% for f in entity.fields %}
+    {% if f.kind == 'checkbox' %}
+      <label class="checkbox"><input type="checkbox" name="{{ f.name }}" {% if values[f.name] %}checked{% endif %}> {{ f.label }}</label>
+    {% else %}
+      <label class="label" for="f-{{ f.name }}">{{ f.label }}{% if not f.required %} <span class="muted">(optional)</span>{% endif %}</label>
+      {% if f.kind in ('textarea', 'lines', 'json') %}
+        <textarea id="f-{{ f.name }}" name="{{ f.name }}" rows="{{ 12 if f.kind == 'json' or f.name == 'content' else 5 }}"
+          {% if f.kind == 'json' %}class="mono"{% endif %}>{{ values[f.name] }}</textarea>
+      {% elif f.kind == 'select' %}
+        <select id="f-{{ f.name }}" name="{{ f.name }}">
+          <option value="">Choose…</option>
+          {% for value, label in (f.options or category_options) %}
+            <option value="{{ value }}" {% if values[f.name] == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      {% else %}
+        <input id="f-{{ f.name }}" name="{{ f.name }}" type="{{ 'url' if f.kind == 'url' else 'text' }}" value="{{ values[f.name] }}">
+      {% endif %}
+    {% endif %}
+    {% if f.help %}<p class="hint">{{ f.help }}</p>{% endif %}
+    {% if errors[f.name] %}<p class="field-error">{{ errors[f.name] }}</p>{% endif %}
+  {% endfor %}
+  <div class="ask-actions">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-ghost" href="{{ url_for('admin.entity_list', entity_name=entity_name) }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}
