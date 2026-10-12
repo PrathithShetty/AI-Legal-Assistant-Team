@@ -127,3 +127,5 @@ Practice PR by Nidhi (PES2UG24AM102)
 Practice PR by Prathith Shetty (PES2UG24AM121)
 
 Practice PR by Niharika (PES2UG24AM105)
+
+Practice PR by Prarthana D Acharya (PES2UG24AM119)
