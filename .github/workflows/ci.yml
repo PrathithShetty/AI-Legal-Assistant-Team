@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Find project files
         id: detect
@@ -23,7 +23,7 @@ jobs:
 
       - name: Set up Python
         if: steps.detect.outputs.py_dir != ''
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -32,11 +32,12 @@ jobs:
         working-directory: ${{ steps.detect.outputs.py_dir }}
         run: |
           pip install -r requirements.txt pytest
-          if ls tests test_*.py */test_*.py >/dev/null 2>&1; then pytest -q; else echo "No Python tests yet"; fi
+          # pytest exits with 5 when no tests exist yet; any other non-zero code fails the build
+          pytest -q || [ $? -eq 5 ]
 
       - name: Set up Node
         if: steps.detect.outputs.js_dir != ''
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
 
