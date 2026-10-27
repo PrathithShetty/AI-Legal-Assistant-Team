@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Welcome, {{ g.user.name.split(' ')[0] }}</h1>
+  <a class="btn btn-primary" href="{{ home_url() }}">Ask a new question</a>
+</div>
+<div class="grid stats">
+  <a class="card stat" href="{{ url_for('history.index') }}"><span class="stat-value">{{ counts.total }}</span><span class="muted">All cases</span></a>
+  <a class="card stat" href="{{ url_for('history.index', status='open') }}"><span class="stat-value">{{ counts.open }}</span><span class="muted">Open</span></a>
+  <a class="card stat" href="{{ url_for('history.index', status='resolved') }}"><span class="stat-value">{{ counts.resolved }}</span><span class="muted">Resolved</span></a>
+</div>
+
+<div class="two-col">
+  <section class="card">
+    <h2>Recent cases</h2>
+    {% if recent %}
+      <ul class="plain-list">
+        {% for q in recent %}
+          <li>
+            <a href="{{ url_for('history.detail', query_id=q.id) }}">{{ q.query_text|truncate(90) }}</a>
+            <div class="muted small">
+              <span class="badge status-{{ q.status }}">{{ q.status|capitalize }}</span>
+              {% if q.category_name %}{{ q.category_name }} · {% endif %}{{ q.created_at }} UTC
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <p><a href="{{ url_for('history.index') }}">See all cases →</a></p>
+    {% else %}
+      <p class="muted">You have no cases yet. Every question you ask while logged in is saved here as a case.</p>
+    {% endif %}
+  </section>
+  <section class="card">
+    <h2>Cases by legal area</h2>
+    {% if by_category %}
+      <ul class="plain-list">
+        {% for c in by_category %}<li class="row-between"><span>{{ c.name }}</span><strong>{{ c.n }}</strong></li>{% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">Nothing to show yet.</p>
+    {% endif %}
+    <h2>Your account</h2>
+    <p class="muted small">{{ g.user.email }}</p>
+    <p><a href="{{ url_for('account.profile') }}">Edit profile or change password →</a></p>
+  </section>
+</div>
+{% endblock %}
