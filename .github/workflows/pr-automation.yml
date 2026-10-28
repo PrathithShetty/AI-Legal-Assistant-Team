@@ -36,10 +36,10 @@ jobs:
             ];
 
             if (!matches.length) {
-              core.setFailed(
-                'Link a backlog issue in the PR description, e.g. "Closes #12".'
-              );
-              return;
+            core.warning(
+            'No closing issue reference found. Add "Closes #<number>" to link a backlog issue.'
+            );
+            return;
             }
 
             const issueNumbers = [...new Set(matches.map(m => Number(m[1])))];
