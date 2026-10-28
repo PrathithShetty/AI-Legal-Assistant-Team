@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Ask a legal question{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Understand your legal problem in plain language</h1>
+  <p class="lead">Describe your situation and get general information on Indian law: what kind of issue it is, the usual steps, relevant laws and when you should see a lawyer.</p>
+</section>
+
+<section class="card ask-card" aria-labelledby="ask-heading">
+  <h2 id="ask-heading" class="visually-hidden">Ask your question</h2>
+  <form id="ask-form" novalidate>
+    <label for="question" class="label">Your question</label>
+    <textarea id="question" name="question" rows="4" maxlength="2000" required
+      placeholder="For example: My landlord is not returning my security deposit after I vacated the flat."></textarea>
+    <div class="ask-meta">
+      <span id="question-error" class="field-error" role="alert"></span>
+      <span class="muted"><span id="char-count">0</span>/2000</span>
+    </div>
+    <div class="ask-actions">
+      <button type="submit" class="btn btn-primary" id="ask-button">Get guidance</button>
+      {% if not g.user and has_page('auth.register') %}<span class="muted small"><a href="{{ url_for('auth.register') }}">Sign up</a> to save your questions as cases you can track.</span>{% endif %}
+    </div>
+  </form>
+  <div class="examples">
+    <span class="muted small">Try an example:</span>
+    {% for example in examples %}
+      <button type="button" class="chip" data-example="{{ example }}">{{ example }}</button>
+    {% endfor %}
+  </div>
+</section>
+
+<div id="loading" class="loading" hidden>
+  <span class="spinner" aria-hidden="true"></span> Looking into your question{% if AI_ENABLED %} (this can take a few seconds){% endif %}…
+</div>
+
+<div id="answers" aria-live="polite"></div>
+
+<section class="features">
+  {% if has_page('references.index') %}
+  <a class="feature" href="{{ url_for('references.index') }}">
+    <h3>Legal references</h3><p>Acts and Supreme Court judgments explained in one line.</p>
+  </a>
+  {% endif %}
+  {% if has_page('doc_templates.index') %}
+  <a class="feature" href="{{ url_for('doc_templates.index') }}">
+    <h3>Document templates</h3><p>RTI application, consumer complaint, rent agreement and more.</p>
+  </a>
+  {% endif %}
+  {% if has_page('history.index') %}
+  <a class="feature" href="{{ url_for('history.index') }}">
+    <h3>My cases</h3><p>Registered users get every question saved as a case they can track until it is resolved.</p>
+  </a>
+  {% endif %}
+</section>
+
+<template id="answer-template">
+  <article class="card answer">
+    <div class="answer-head">
+      <p class="answer-question"></p>
+      <span class="badge category-badge" hidden></span>
+    </div>
+    <div class="emergency" hidden></div>
+    <section><h3>Summary</h3><div class="summary"></div><p class="source muted small"></p></section>
+    <section class="steps-section" hidden><h3>General steps</h3><ol class="steps"></ol></section>
+    <section class="lawyer" hidden><h3>When to consult a lawyer</h3><ul class="lawyer-reasons"></ul><p class="lawyer-advice"></p></section>
+    <section><h3>Legal references</h3><ul class="references"></ul><p class="no-reference muted" hidden></p></section>
+    <p class="disclaimer"></p>
+    <form class="feedback-form">
+      <span class="label">Was this helpful?</span>
+      <div class="rating" role="radiogroup" aria-label="Rating"></div>
+      <input type="text" name="comment" maxlength="1000" placeholder="Optional comment">
+      <button type="submit" class="btn btn-ghost btn-small">Send feedback</button>
+      <span class="feedback-status small" role="status"></span>
+    </form>
+  </article>
+</template>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='app.js') }}"></script>{% endblock %}

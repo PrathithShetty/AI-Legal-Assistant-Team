@@ -19,20 +19,22 @@ Story points use the Fibonacci scale (1, 2, 3, 5, 8): 1 = trivial UI/text change
 
 | Member | Sprint 0 | Sprint 1 | Sprint 2 | Total |
 |---|---|---|---|---|
-| Prathith Shetty | 5 | 16 | 14 | 35 |
+| Prathith Shetty | 7 | 16 | 14 | 37 |
 | Niharika Mirle | 0 | 10 | 20 | 30 |
 | Nidhi | 0 | 19 | 14 | 33 |
 | Prarthana D Acharya | 0 | 17 | 17 | 34 |
-| **Total** | **5** | **62** | **65** | **132** |
+| **Total** | **7** | **62** | **65** | **134** |
 
 ## Sprint 0 - Dry Run (12-16 Oct)
 
-Due: 2026-10-16 | 5 points
+Due: 2026-10-16 | 7 points
 
 | ID | Title | Area | Priority | Pts | Assignee |
 |---|---|---|---|---|---|
 | T-01 | Set up project skeleton (frontend, backend, database) | Setup | High | 3 | Prathith Shetty |
 | T-02 | Enable GitHub Actions CI and protect main branch | Setup | High | 2 | Prathith Shetty |
+| T-06 | Document team roles, branches and merge order in the README | Setup | Medium | 1 | Prathith Shetty |
+| T-07 | Add GitHub issue templates for bug reports and user stories | Setup | Medium | 1 | Prathith Shetty |
 
 ## Sprint 1 (19-23 Oct)
 

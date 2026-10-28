@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+<div class="card narrow">
+  <h1>Create your account</h1>
+  <p class="muted">An account lets you save every question as a case you can track on your dashboard.</p>
+  <form method="post" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label class="label" for="name">Full name</label>
+    <input id="name" name="name" type="text" maxlength="80" autocomplete="name" value="{{ form.get('name', '') }}" required>
+    {% if errors.name %}<p class="field-error">{{ errors.name }}</p>{% endif %}
+
+    <label class="label" for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" value="{{ form.get('email', '') }}" required>
+    {% if errors.email %}<p class="field-error">{{ errors.email }}</p>{% endif %}
+
+    <label class="label" for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+    <p class="hint">At least 8 characters, with a letter and a number.</p>
+    {% if errors.password %}<p class="field-error">{{ errors.password }}</p>{% endif %}
+
+    <label class="label" for="confirm_password">Confirm password</label>
+    <input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required>
+    {% if errors.confirm_password %}<p class="field-error">{{ errors.confirm_password }}</p>{% endif %}
+
+    <div class="disclaimer-box">
+      <p>{{ DISCLAIMER }}</p>
+      <label class="checkbox"><input type="checkbox" name="accept_disclaimer" {% if form.get('accept_disclaimer') %}checked{% endif %}>
+        I understand that this service gives general information, not legal advice.</label>
+      {% if errors.accept_disclaimer %}<p class="field-error">{{ errors.accept_disclaimer }}</p>{% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Create account</button>
+  </form>
+  <p class="center small">Already registered? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+</div>
+{% endblock %}

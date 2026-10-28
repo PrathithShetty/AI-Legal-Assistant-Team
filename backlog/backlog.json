@@ -75,6 +75,39 @@
       ]
     },
     {
+      "id": "T-06",
+      "type": "Task",
+      "area": "Setup",
+      "priority": "Medium",
+      "points": 1,
+      "sprint": "Sprint 0",
+      "assignee": "Prathith Shetty",
+      "title": "Document team roles, branches and merge order in the README",
+      "story": "As a team member, I want the README to explain who owns which module, which branch to use and the order PRs are merged, so that sprint PRs merge cleanly.",
+      "criteria": [
+        "README lists each member's role, branch and modules",
+        "Sprint 1 and Sprint 2 merge order documented",
+        "Review rules (1 approval, green build check, Merge not Close) documented",
+        "Project structure and traceability tables match the current code and test files"
+      ]
+    },
+    {
+      "id": "T-07",
+      "type": "Task",
+      "area": "Setup",
+      "priority": "Medium",
+      "points": 1,
+      "sprint": "Sprint 0",
+      "assignee": "Prathith Shetty",
+      "title": "Add GitHub issue templates for bug reports and user stories",
+      "story": "As a tester, I want a bug report template linked to our test case IDs so that defects found during testing are reported consistently.",
+      "criteria": [
+        "'Bug report' template asks for test case ID, steps, expected vs actual result, severity",
+        "'User story' template asks for SRS ID, story, acceptance criteria, story points",
+        "Templates appear when clicking New issue on GitHub"
+      ]
+    },
+    {
       "id": "FR-01",
       "type": "Functional",
       "area": "Authentication",
