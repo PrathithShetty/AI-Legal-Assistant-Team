@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Legal references{% endblock %}
+{% block content %}
+<h1>Legal references</h1>
+<p class="lead">Important Indian laws and Supreme Court judgments, each explained in a sentence or two.</p>
+
+<form class="filter-bar" method="get" role="search">
+  <label class="visually-hidden" for="q">Search references</label>
+  <input id="q" name="q" type="search" placeholder="Search, e.g. FIR, deposit, divorce" value="{{ search }}">
+  <label class="visually-hidden" for="category">Category</label>
+  <select id="category" name="category">
+    <option value="">All categories</option>
+    {% for c in categories %}<option value="{{ c.slug }}" {% if c.slug == selected %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+    <option value="general" {% if selected == 'general' %}selected{% endif %}>General</option>
+  </select>
+  <button class="btn btn-primary" type="submit">Filter</button>
+</form>
+
+{% if references %}
+  {% for group in references|groupby('category_name') %}
+    <section class="ref-group">
+      <h2>{{ group.grouper }}</h2>
+      <ul class="ref-list">
+        {% for r in group.list %}
+          <li class="card ref">
+            <div class="ref-head">
+              {% if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener"><strong>{{ r.title }}</strong></a>{% else %}<strong>{{ r.title }}</strong>{% endif %}
+              <span class="badge badge-{{ r.kind|lower|replace(' ', '-') }}">{{ r.kind }}</span>
+            </div>
+            <p>{{ r.description }}</p>
+            <p class="muted small">Source: {{ r.source }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+{% else %}
+  <div class="card empty">{{ no_reference_message }} Try a different search word or category.</div>
+{% endif %}
+<p class="disclaimer">{{ DISCLAIMER }}</p>
+{% endblock %}
