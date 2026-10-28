@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ entity.title }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ url_for('admin.dashboard') }}">Admin</a> / {{ entity.title }}</p>
+<div class="page-head">
+  <h1>{{ entity.title }}</h1>
+  <a class="btn btn-primary" href="{{ url_for('admin.entity_form', entity_name=entity_name) }}">Add {{ entity.singular }}</a>
+</div>
+<div class="table-wrap card">
+  <table>
+    <thead><tr>{% for col, label in entity.list_columns %}<th>{{ label }}</th>{% endfor %}<th><span class="visually-hidden">Actions</span></th></tr></thead>
+    <tbody>
+      {% for row in rows %}
+        <tr>
+          {% for col, label in entity.list_columns %}<td>{{ row[col] }}</td>{% endfor %}
+          <td class="actions">
+            <a class="btn btn-ghost btn-small" href="{{ url_for('admin.entity_form', entity_name=entity_name, item_id=row.id) }}">Edit</a>
+            <form method="post" action="{{ url_for('admin.entity_delete', entity_name=entity_name, item_id=row.id) }}" class="inline-form"
+                  onsubmit="return confirm('Delete this {{ entity.singular }}? This cannot be undone.');">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button type="submit" class="btn btn-danger btn-small">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="{{ entity.list_columns|length + 1 }}" class="muted">Nothing here yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
