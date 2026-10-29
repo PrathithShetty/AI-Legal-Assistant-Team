@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Case #{{ query.id }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ url_for('history.index') }}">My cases</a> / Case #{{ query.id }} · {{ query.created_at }} UTC</p>
+<div class="card case-status">
+  <span>Status: <span class="badge status-{{ query.status }}">{{ statuses[query.status] }}</span></span>
+  <form method="post" action="{{ url_for('history.update_status', query_id=query.id) }}" class="inline-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if query.status == 'open' %}
+      <input type="hidden" name="status" value="resolved">
+      <button type="submit" class="btn btn-primary btn-small">Mark as resolved</button>
+    {% else %}
+      <input type="hidden" name="status" value="open">
+      <button type="submit" class="btn btn-ghost btn-small">Reopen case</button>
+    {% endif %}
+  </form>
+</div>
+<article class="card answer">
+  <div class="answer-head">
+    <p class="answer-question">{{ response.question }}</p>
+    {% if response.category %}<span class="badge category-badge">{{ response.category.name }}</span>{% endif %}
+  </div>
+  {% if response.emergency %}<div class="emergency">{% for m in response.emergency %}<p>{{ m }}</p>{% endfor %}</div>{% endif %}
+  <section>
+    <h3>Summary</h3>
+    <div class="summary">{% for p in response.summary.split('\n') if p.strip() %}<p>{{ p }}</p>{% endfor %}</div>
+  </section>
+  {% if response.steps %}
+    <section><h3>General steps</h3><ol class="steps">{% for s in response.steps %}<li>{{ s }}</li>{% endfor %}</ol></section>
+  {% endif %}
+  {% if response.professional_help %}
+    <section class="lawyer"><h3>When to consult a lawyer</h3>
+      <ul>{% for r in response.professional_help.reasons %}<li>{{ r }}</li>{% endfor %}</ul>
+      <p>{{ response.professional_help.advice }}</p>
+    </section>
+  {% endif %}
+  <section><h3>Legal references</h3>
+    {% if response.references %}
+      <ul class="references">{% for r in response.references %}
+        <li><strong>{{ r.title }}</strong> <span class="muted small">{{ r.kind }} · {{ r.source }}</span><p class="small">{{ r.description }}</p></li>
+      {% endfor %}</ul>
+    {% else %}<p class="muted">{{ response.no_reference_message }}</p>{% endif %}
+  </section>
+  <p class="disclaimer">{{ response.disclaimer }}</p>
+</article>
+{% endblock %}
