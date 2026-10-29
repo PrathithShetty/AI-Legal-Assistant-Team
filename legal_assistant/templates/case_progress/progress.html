@@ -1,0 +1,71 @@
+
+{% extends "base.html" %}
+{% block title %}Case #{{ case.id }} Progress{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Case #{{ case.id }} Progress</h1>
+  <p class="lead">{{ case.query_text }}</p>
+  <p class="muted">Category: {{ case.category or 'Not classified' }}</p>
+</section>
+
+{% with percentage = ((completed_steps / total_steps * 100)|round|int) if total_steps else 0 %}
+<section class="card">
+  <h2>Procedure steps</h2>
+  <p>{{ completed_steps }} of {{ total_steps }} steps completed ({{ percentage }}%).</p>
+  <progress value="{{ completed_steps }}" max="{{ total_steps if total_steps else 1 }}"></progress>
+
+  {% if steps %}
+    <ol class="checklist">
+      {% for step in steps %}
+        <li>
+          <form method="post"
+                action="{{ url_for('case_progress.update_progress', query_id=case.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="item_type" value="step">
+            <input type="hidden" name="item_key" value="{{ step.index }}">
+            <input type="hidden" name="completed" value="{{ '0' if step.completed else '1' }}">
+            <label class="checkbox">
+              <input type="checkbox" {% if step.completed %}checked{% endif %}
+                     onchange="this.form.submit()">
+              <span>{{ step.text }}</span>
+            </label>
+          </form>
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p>No procedure steps are available for this case.</p>
+  {% endif %}
+</section>
+{% endwith %}
+
+{% with percentage = ((completed_documents / total_documents * 100)|round|int) if total_documents else 0 %}
+<section class="card">
+  <h2>Document checklist</h2>
+  <p>{{ completed_documents }} of {{ total_documents }} documents prepared ({{ percentage }}%).</p>
+  <progress value="{{ completed_documents }}" max="{{ total_documents if total_documents else 1 }}"></progress>
+
+  <ul class="checklist">
+    {% for document in documents %}
+      <li>
+        <form method="post"
+              action="{{ url_for('case_progress.update_progress', query_id=case.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="item_type" value="document">
+          <input type="hidden" name="item_key" value="{{ document.name }}">
+          <input type="hidden" name="completed" value="{{ '0' if document.prepared else '1' }}">
+          <label class="checkbox">
+            <input type="checkbox" {% if document.prepared %}checked{% endif %}
+                   onchange="this.form.submit()">
+            <span>{{ document.name }}</span>
+          </label>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endwith %}
+
+<p><a href="{{ url_for('case_progress.index') }}">← Back to My Cases</a></p>
+{% endblock %}

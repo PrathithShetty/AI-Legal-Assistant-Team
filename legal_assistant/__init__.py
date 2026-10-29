@@ -16,7 +16,8 @@ from .disclaimer import DISCLAIMER, SHORT_DISCLAIMER
 # Module -> owner (team plan): user & case management, AI assistant, case guidance, admin.
 FEATURE_MODULES = (
     "auth", "account", "history",         # Member 1
-    "query",                              # Member 2 (uses Member 3 classifier/guidance/references)
+    "query", 
+    "case_progress",  # Issue #49: case progress and document checklist                             # Member 2 (uses Member 3 classifier/guidance/references)
     "references", "doc_templates",        # Member 3
     "feedback", "admin",                  # Member 4
 )
