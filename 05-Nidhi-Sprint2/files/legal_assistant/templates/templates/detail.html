@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ template.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ url_for('doc_templates.index') }}">Templates</a> / {{ template.name }}</p>
+<h1>{{ template.name }}</h1>
+<div class="card purpose">
+  <h2>What is this for?</h2>
+  <p>{{ template.description }}</p>
+</div>
+
+<div class="two-col">
+  <form method="post" class="card" novalidate>
+    <h2>Your details</h2>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% for f in fields %}
+      <label class="label" for="f-{{ f.name }}">{{ f.label }}</label>
+      {% if f.type == 'textarea' %}
+        <textarea id="f-{{ f.name }}" name="{{ f.name }}" rows="3" maxlength="3000">{{ values.get(f.name, '') }}</textarea>
+      {% else %}
+        <input id="f-{{ f.name }}" name="{{ f.name }}" type="{{ 'date' if f.type == 'date' else 'text' }}" maxlength="3000" value="{{ values.get(f.name, '') }}">
+      {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary btn-block">Generate document</button>
+    <p class="hint">Leave a field empty to keep a [placeholder] you can fill in later.</p>
+  </form>
+
+  <section class="card">
+    <h2>{% if generated %}Your document{% else %}Preview{% endif %}</h2>
+    <label class="visually-hidden" for="generated-document">Generated document</label>
+    <textarea id="generated-document" class="document" rows="22" readonly>{{ document }}</textarea>
+    <div class="ask-actions">
+      <button type="button" class="btn btn-primary" id="copy-document">Copy</button>
+      <button type="button" class="btn btn-ghost" id="download-document" data-filename="{{ template.slug }}">Download .txt</button>
+      <span id="document-status" class="small muted" role="status"></span>
+    </div>
+  </section>
+</div>
+<p class="disclaimer">{{ DISCLAIMER }} Templates are general formats; check the requirements of your state or office before using them.</p>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='templates.js') }}"></script>{% endblock %}
