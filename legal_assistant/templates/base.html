@@ -30,6 +30,7 @@
         {% if g.user %}
           {{ nav_link('account.dashboard', 'Dashboard') }}
           {{ nav_link('history.index', 'My cases', 'history.') }}
+          {{ nav_link('case_progress.index', 'Case progress', 'case_progress.') }}
         {% endif %}
         {{ nav_link('feedback.form', 'Feedback') }}
         {% if g.user and g.user.role == 'admin' %}
