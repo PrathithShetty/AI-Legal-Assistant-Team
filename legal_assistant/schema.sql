@@ -62,3 +62,29 @@ CREATE TABLE IF NOT EXISTS feedback (
     reviewed   INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+-- Per-case procedure step completion.
+CREATE TABLE IF NOT EXISTS case_step_progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    query_id INTEGER NOT NULL REFERENCES queries(id) ON DELETE CASCADE,
+    step_index INTEGER NOT NULL,
+    completed INTEGER NOT NULL DEFAULT 0 CHECK (completed IN (0, 1)),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (query_id, step_index)
+);
+
+-- Per-case document checklist.
+CREATE TABLE IF NOT EXISTS case_documents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    query_id INTEGER NOT NULL REFERENCES queries(id) ON DELETE CASCADE,
+    document_name TEXT NOT NULL,
+    prepared INTEGER NOT NULL DEFAULT 0 CHECK (prepared IN (0, 1)),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+    UNIQUE (query_id, document_name)
+);
+
+CREATE INDEX IF NOT EXISTS idx_case_step_progress_query
+    ON case_step_progress (query_id);
+
+CREATE INDEX IF NOT EXISTS idx_case_documents_query
+    ON case_documents (query_id);

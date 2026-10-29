@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block title %}My Cases{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>My Cases</h1>
+  <p class="lead">Track your legal procedure steps and keep your supporting documents organised.</p>
+</section>
+
+{% if cases %}
+  <div class="case-list">
+    {% for case in cases %}
+      <article class="card">
+        <h2>Case #{{ case.id }}</h2>
+        <p>{{ case.query_text }}</p>
+        <p class="muted">
+          Category: {{ case.category or 'Not classified' }}
+          · Status: {{ case.status }}
+          · Created: {{ case.created_at }}
+        </p>
+        <a class="btn btn-primary"
+           href="{{ url_for('case_progress.progress', query_id=case.id) }}">
+          View progress
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="card">
+    <h2>No saved cases yet</h2>
+    <p>Log in and ask a legal question to create a case you can track.</p>
+    <a class="btn btn-primary" href="{{ url_for('query.home') }}">Ask a question</a>
+  </div>
+{% endif %}
+{% endblock %}
