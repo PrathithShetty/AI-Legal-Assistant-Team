@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}User feedback{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{{ url_for('admin.dashboard') }}">Admin</a> / User feedback</p>
+<div class="page-head">
+  <h1>User feedback</h1>
+  <div class="tabs">
+    <a href="{{ url_for('admin.feedback_list', show='new') }}" {% if show == 'new' %}aria-current="page"{% endif %}>Needs review</a>
+    <a href="{{ url_for('admin.feedback_list', show='all') }}" {% if show == 'all' %}aria-current="page"{% endif %}>All</a>
+  </div>
+</div>
+{% for f in feedback %}
+  <div class="card feedback-item {% if f.reviewed %}is-reviewed{% endif %}">
+    <div class="feedback-head">
+      <span class="stars" aria-label="{{ f.rating }} out of 5">{{ '★' * f.rating }}{{ '☆' * (5 - f.rating) }}</span>
+      <span class="muted small">{{ f.user_name or 'Guest' }} · {{ f.created_at }} UTC</span>
+    </div>
+    {% if f.query_text %}<p class="muted small">On the question: “{{ f.query_text|truncate(140) }}”</p>{% endif %}
+    <p>{{ f.comment or '(no comment)' }}</p>
+    <form method="post" action="{{ url_for('admin.feedback_review', item_id=f.id) }}" class="inline-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn btn-ghost btn-small">{{ 'Mark as not reviewed' if f.reviewed else 'Mark as reviewed' }}</button>
+    </form>
+  </div>
+{% else %}
+  <div class="card empty">No feedback {{ 'waiting for review' if show == 'new' else 'yet' }}.</div>
+{% endfor %}
+{% endblock %}

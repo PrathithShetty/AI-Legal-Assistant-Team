@@ -1,4 +1,4 @@
-"""Administrator dashboard (FR-23; FR-24 and FR-25 follow in Sprint 2). Every route requires the admin role (FR-04, NFR-08, BR-04)."""
+"""Administrator dashboard (FR-23 to FR-25). Every route requires the admin role (FR-04, NFR-08, BR-04)."""
 import json
 import re
 import sqlite3
@@ -53,6 +53,34 @@ ENTITIES = {
             Field("keywords", "Classification keywords", "textarea", max_length=3000, help="Comma separated. Phrases with spaces score higher."),
             Field("steps", "Procedure steps", "lines", max_length=5000, help="One step per line."),
             Field("needs_lawyer", "Always recommend consulting a lawyer for this category", "checkbox", required=False),
+        ],
+    ),
+    "references": Entity(
+        table="legal_references", title="Legal references", singular="reference", order_by="category, title",
+        summary="Acts, rules and judgments.",
+        list_columns=[("title", "Title"), ("kind", "Type"), ("category", "Category")],
+        fields=[
+            Field("title", "Title", max_length=300),
+            Field("category", "Category", "select"),
+            Field("kind", "Type", "select", options=[(k, k) for k in REFERENCE_KINDS]),
+            Field("source", "Source", max_length=200),
+            Field("description", "Short description", "textarea", max_length=1500),
+            Field("url", "Link (optional)", "url", required=False, max_length=500),
+            Field("keywords", "Matching keywords (optional)", "textarea", required=False, max_length=1000, help="Comma separated."),
+        ],
+    ),
+    "templates": Entity(
+        table="doc_templates", title="Document templates", singular="template", order_by="name",
+        summary="templates.",
+        list_columns=[("name", "Name"), ("slug", "Slug"), ("category", "Category")],
+        fields=[
+            Field("slug", "Slug (unique short id)", "slug", max_length=60, help="Lowercase letters, numbers and hyphens."),
+            Field("name", "Name", max_length=150),
+            Field("category", "Category", "select"),
+            Field("description", "Purpose of the template", "textarea", max_length=1500),
+            Field("fields", "Form fields (JSON)", "json", max_length=10000,
+                  help='List of {"name": "applicant_name", "label": "Your full name", "type": "text|textarea|date"}.'),
+            Field("content", "Template text", "textarea", max_length=20000, help="Use {{field_name}} where a value should be filled in."),
         ],
     ),
 }
@@ -137,6 +165,25 @@ def dashboard():
         queries=query_one("SELECT COUNT(*) AS n FROM queries")["n"],
     )
     return render_template("admin/dashboard.html", counts=counts, entities=ENTITIES)
+
+
+@bp.route("/feedback")
+@admin_required
+def feedback_list():
+    show = request.args.get("show", "new")
+    sql = ("SELECT f.*, u.name AS user_name, q.query_text FROM feedback f "
+           "LEFT JOIN users u ON u.id = f.user_id LEFT JOIN queries q ON q.id = f.query_id")
+    if show == "new":
+        sql += " WHERE f.reviewed = 0"
+    rows = query_all(sql + " ORDER BY f.created_at DESC, f.id DESC")
+    return render_template("admin/feedback.html", feedback=rows, show=show)
+
+
+@bp.route("/feedback/<int:item_id>/review", methods=["POST"])
+@admin_required
+def feedback_review(item_id):
+    execute("UPDATE feedback SET reviewed = 1 - reviewed WHERE id = ?", (item_id,))
+    return redirect(request.referrer or url_for("admin.feedback_list"))
 
 
 @bp.route("/<entity_name>")
