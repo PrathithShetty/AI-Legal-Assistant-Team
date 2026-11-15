@@ -1,0 +1,22 @@
+# Free HTTPS deployment on Render (render.com): New > Blueprint > select this repo.
+# Set ADMIN_EMAIL, ADMIN_PASSWORD and (optionally) ANTHROPIC_API_KEY in the Render dashboard.
+services:
+  - type: web
+    name: ai-legal-assistant
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 2 --threads 4 --timeout 60 "run:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.10"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FORCE_HTTPS
+        value: "1"
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
