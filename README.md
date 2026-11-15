@@ -118,11 +118,17 @@ All test cases (69 cases across 17 types of testing, with results) are in [AI_Le
 
 ## Deploy (HTTPS)
 
-1. Push to GitHub and sign in to https://render.com.
-2. Choose **New > Blueprint** and select this repository. Render reads `render.yaml`.
-3. Set `ADMIN_EMAIL`, `ADMIN_PASSWORD` and optionally `ANTHROPIC_API_KEY`.
+**Application:** [AI Legal Assistant](https://ai-legal-assistant-89g1.onrender.com)
 
-On the free plan the SQLite file is reset when the service restarts, so the knowledge base is re-seeded and saved user data is lost. That is fine for a demo; attach a persistent disk for real use.
+**Deployment Platform:** Render
+
+**Deployment Branch:** `main`
+
+**Deployment Configuration:** `render.yaml`
+
+**HTTPS:** Enabled and verified
+
+The application is deployed on Render using the repository's Blueprint configuration. HTTP requests are redirected to HTTPS.
 
 ## Team workflow
 
